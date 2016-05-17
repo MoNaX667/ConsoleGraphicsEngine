@@ -18,7 +18,7 @@ namespace ConsoleGraphEngine
 
         // Constructors
         private Bunny(int xCoordinate,int yCoordinate,ConsoleColor color){
-            this.myBody = new Pixel(xCoordinate, yCoordinate, color);
+            myBody = new Pixel(xCoordinate, yCoordinate, color);
         }
 
         // Methods
@@ -37,13 +37,17 @@ namespace ConsoleGraphEngine
             Console.ForegroundColor = tempColor;
         }
 
+        /// <summary>
+        /// Revive bunny with new position
+        /// </summary>
+        /// <returns></returns>
         public static Bunny GetBunny() {
             if (myBunny == null)
             {
                 myBunny = new Bunny(ran.Next(3, 80), ran.Next(3, 25), (ConsoleColor)ran.Next(2, 13));
             }
             else {
-                myBunny.myBody.XCoordinate = ran.Next(3, 80);
+                myBunny.myBody.XCoordinate = ran.Next(3, 78);
                 myBunny.myBody.YCoordinate = ran.Next(3, 25);
                 myBunny.myBody.Color = (ConsoleColor)ran.Next(2, 13);
 
@@ -51,7 +55,5 @@ namespace ConsoleGraphEngine
 
             return myBunny;
         }
-
-        // Private methods
     }
 }

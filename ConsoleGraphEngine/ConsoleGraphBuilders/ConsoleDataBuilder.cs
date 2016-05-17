@@ -9,9 +9,9 @@ namespace ConsoleGraphEngine
         /// Clean graphic frame
         /// </summary>
         public static void ClearGrapfField() {
-            Console.SetCursorPosition(3,3);
-            for (int i = 3; i < 30; i++) {
-                Console.WriteLine(new string(' ',80));
+            for (int i = 3; i < 29; i++) {
+                Console.SetCursorPosition(3, i);
+                Console.Write(new string(' ',78));
             }
         }
 

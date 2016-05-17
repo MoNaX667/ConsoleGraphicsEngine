@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleGraphEngine
 {
-    class Snake:Shape
+    internal class Snake:Shape
     {
         // Members
         private List<Pixel> myBodyesPart;
@@ -42,10 +43,6 @@ namespace ConsoleGraphEngine
         }
 
 
-        public void Eat() {
-
-        }
-
         /// <summary>
         /// Return head pixel
         /// </summary>
@@ -60,14 +57,10 @@ namespace ConsoleGraphEngine
         /// <param name="xStep"></param>
         /// <param name="yStep"></param>
         /// <returns>return true if all good, else return false</returns>
-        public bool CheckMyBodyesForStep(int xStep,int yStep) {
-
-            foreach (Pixel section in myBodyesPart) {
-                if (section.XCoordinate == xStep && section.YCoordinate == yStep)
-                    return false;
-            }
-
-            return true;
+        public bool CheckMyBodyesForStep(int xStep,int yStep)
+        {
+            return myBodyesPart.All(section => section.XCoordinate != xStep || 
+            section.YCoordinate != yStep);
         }
 
         /// <summary>
@@ -76,7 +69,7 @@ namespace ConsoleGraphEngine
         /// <param name="x">xCoordinate for snake head</param>
         /// <param name="y">yCoordinate for snake head</param>
         public void Move(int x, int y) {
-            int tempX = 0, tempY = 0;int temp = 0;
+            int tempX = 0, tempY = 0;
 
             for (int i = myBodyesPart.Count - 1; i >=0; i--) {
 
@@ -88,7 +81,7 @@ namespace ConsoleGraphEngine
                     myBodyesPart[i].YCoordinate = y;
                 }
                 else {
-                    temp = myBodyesPart[i].XCoordinate;
+                    var temp = myBodyesPart[i].XCoordinate;
                     myBodyesPart[i].XCoordinate = tempX;
                     tempX = temp;
 
@@ -99,8 +92,6 @@ namespace ConsoleGraphEngine
 
             }
         }
-        
-        // Private method
 
         /// <summary>
         /// Add new element to snake body
@@ -108,7 +99,7 @@ namespace ConsoleGraphEngine
         /// <param name="xCoordinate"></param>
         /// <param name="yCoordinate"></param>
         /// <param name="color"></param>
-        private void Grow(int xCoordinate,int yCoordinate,ConsoleColor color) {
+        public void Eat(int xCoordinate,int yCoordinate,ConsoleColor color) {
             myBodyesPart.Add(new Pixel(xCoordinate,yCoordinate,color));
         }
     }
