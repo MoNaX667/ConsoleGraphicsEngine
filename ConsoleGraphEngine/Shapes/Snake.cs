@@ -71,16 +71,19 @@ namespace ConsoleGraphEngine
         public void Move(int x, int y) {
             int tempX = 0, tempY = 0;
 
+            // Pass coordinate
             for (int i = myBodyesPart.Count - 1; i >=0; i--) {
 
                 if (i == myBodyesPart.Count - 1)
                 {
+                    // Head coordinate
                     tempX = myBodyesPart[i].XCoordinate;
                     tempY = myBodyesPart[i].YCoordinate;
                     myBodyesPart[i].XCoordinate = x;
                     myBodyesPart[i].YCoordinate = y;
                 }
                 else {
+                    // Other body coordinate
                     var temp = myBodyesPart[i].XCoordinate;
                     myBodyesPart[i].XCoordinate = tempX;
                     tempX = temp;

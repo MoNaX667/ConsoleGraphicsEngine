@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Threading;
 
 namespace ConsoleGraphEngine
@@ -37,8 +36,6 @@ namespace ConsoleGraphEngine
             Snake mySnake = new Snake(ran.Next(15,60),ran.Next(4,20));
             Bunny myBunny = Bunny.GetBunny();
 
-            bool bunnyWasEaten = false;
-
             // Animation block
             while (true) {
                 
@@ -72,8 +69,6 @@ namespace ConsoleGraphEngine
                     // ...than do snake move
                     mySnake.Move(nextXStep, nextYStep);
                 }
-
-                
                 Thread.Sleep(50);
             }       
         }

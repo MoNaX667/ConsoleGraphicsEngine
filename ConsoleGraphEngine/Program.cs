@@ -4,7 +4,7 @@ namespace ConsoleGraphEngine
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // Console customization
             Console.Title = "Graphic Console Processor";
