@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading;
-
-namespace ConsoleGraphEngine
+﻿namespace ConsoleGraphEngine
 {
-    static class AppEngine
+    using System;
+    using System.Threading;
+
+    internal static class AppEngine
     {
         /// <summary>
         /// Start engine
@@ -18,9 +18,27 @@ namespace ConsoleGraphEngine
         }
 
         /// <summary>
+        /// CheckEat to next move
+        /// </summary>
+        /// <param name="mySnake"></param>
+        /// <param name="myBunny"></param>
+        /// <returns></returns>
+        private static bool CheckEat(Snake mySnake, Bunny myBunny)
+        {
+            if ((mySnake.GetHead().XCoordinate == myBunny.MyBody.XCoordinate) &&
+                (mySnake.GetHead().YCoordinate == myBunny.MyBody.YCoordinate))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Build GIU and frame programm blocks
         /// </summary>
-        private static void DrawUserInterface() {
+        private static void DrawUserInterface()
+        {
             // Draw frames
             ConsoleFrameBuilder.DrawBaseFrame(0, 0, 30, 98);
             ConsoleFrameBuilder.DrawAnimationFrame();
@@ -29,19 +47,17 @@ namespace ConsoleGraphEngine
         /// <summary>
         /// RunSnakeAnimation
         /// </summary>
-        private static void RunSnakeAnimation() {
-            Random ran = new Random();
+        private static void RunSnakeAnimation()
+        {
+            var ran = new Random();
             
             // Create animation objects
-            Snake mySnake = new Snake(ran.Next(15,60),ran.Next(4,20));
-            Bunny myBunny = Bunny.GetBunny();
+            var mySnake = new Snake(ran.Next(15, 60), ran.Next(4, 20));
+            var myBunny = Bunny.GetBunny();
 
             // Animation block
-            while (true) {
-                
-                // Eaten flag check if bunny was eaten create new bunny
-                
-
+            while (true)
+            {
                 // Clear graph frame
                 ConsoleDataBuilder.ClearGrapfField();
                 Thread.Sleep(50);
@@ -51,8 +67,9 @@ namespace ConsoleGraphEngine
                 mySnake.Draw();
 
                 // Calculate next Move and done it
-                int nextXStep; int nextYStep;
-                CalculateNextSnakeMove(out nextXStep,out nextYStep,mySnake,myBunny);
+                int nextXStep;
+                int nextYStep;
+                CalculateNextSnakeMove(out nextXStep, out nextYStep, mySnake,myBunny);
 
                 // Check for eating...
                 if (CheckEat(mySnake, myBunny))
@@ -69,6 +86,7 @@ namespace ConsoleGraphEngine
                     // ...than do snake move
                     mySnake.Move(nextXStep, nextYStep);
                 }
+
                 Thread.Sleep(50);
             }       
         }
@@ -76,13 +94,16 @@ namespace ConsoleGraphEngine
         /// <summary>
         /// Calculate new coordinate to next move for snake
         /// </summary>
-        private static void CalculateNextSnakeMove(out int x, out int y,
-            Snake mySnake, Bunny myBunny)
+        private static void CalculateNextSnakeMove(
+            out int x,
+            out int y,
+            Snake mySnake, 
+            Bunny myBunny)
         {
             // Head coodinate for cheking
             int xSnakeHead = mySnake.GetHead().XCoordinate;
             int ySnakeHead = mySnake.GetHead().YCoordinate;
-            int xResult =xSnakeHead , yResult = ySnakeHead;
+            int xResult = xSnakeHead , yResult = ySnakeHead;
 
             // Check for any move 
             // If next does not strike snake body and do next position more closer with bunny
@@ -108,10 +129,11 @@ namespace ConsoleGraphEngine
                 y = yResult;
                 return;
             }
-            else if (mySnake.CheckMyBodyesForStep(xResult, yResult-1) &&
-               CheckVector(mySnake, myBunny, xResult, yResult - 1)) {
+            else if (mySnake.CheckMyBodyesForStep(xResult, yResult - 1) &&
+               CheckVector(mySnake, myBunny, xResult, yResult - 1))
+            {
                 x = xResult;
-                y = yResult-1;
+                y = yResult - 1;
                 return;
             }
 
@@ -127,32 +149,19 @@ namespace ConsoleGraphEngine
         /// <param name="xStep">new x coordinate</param>
         /// <param name="yStep">new y coordinate</param>
         /// <returns></returns>
-        private static bool CheckVector(Snake mySnake, Bunny myBunny, int xStep, int yStep) {
-           
+        private static bool CheckVector(Snake mySnake, Bunny myBunny, int xStep, int yStep)
+        {
             // Calculate old vector lenght
-            double baseLenght = Math.Sqrt(Math.Pow((myBunny.MyBody.XCoordinate -
-                mySnake.GetHead().XCoordinate),2)+Math.Pow((myBunny.MyBody.YCoordinate -
-                mySnake.GetHead().YCoordinate), 2));
+            double baseLenght = Math.Sqrt(Math.Pow(
+                (myBunny.MyBody.XCoordinate - mySnake.GetHead().XCoordinate),2) +
+                Math.Pow((myBunny.MyBody.YCoordinate - mySnake.GetHead().YCoordinate), 2));
 
             // Calculate new vector lenght
-            double nextLenght= Math.Sqrt(Math.Pow((myBunny.MyBody.XCoordinate -
-                xStep), 2) + Math.Pow((myBunny.MyBody.YCoordinate -
-                yStep), 2));
+            double nextLenght = Math.Sqrt(Math.Pow((myBunny.MyBody.XCoordinate - xStep), 2) + 
+                Math.Pow((myBunny.MyBody.YCoordinate  - yStep), 2));
 
             // If next lenght less that current position lenght than move is good
             if (baseLenght > nextLenght)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-
-        public static bool CheckEat(Snake mySnake,Bunny myBunny)
-        {
-            if ((mySnake.GetHead().XCoordinate == myBunny.MyBody.XCoordinate) &&
-                (mySnake.GetHead().YCoordinate == myBunny.MyBody.YCoordinate))
             {
                 return true;
             }

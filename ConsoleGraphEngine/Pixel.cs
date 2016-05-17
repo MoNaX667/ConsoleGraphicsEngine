@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace ConsoleGraphEngine
+﻿namespace ConsoleGraphEngine
 {
-    class Pixel
-    {
-        // Members
+    using System;
 
+    internal class Pixel
+    {
         // Properties
         public int XCoordinate { get; set; }
 
@@ -14,13 +12,11 @@ namespace ConsoleGraphEngine
         public ConsoleColor Color { get; set; }
 
         // Constructors
-        public Pixel(int xCoordinate,int yCoordinate,ConsoleColor color)
+        public Pixel(int xCoordinate, int yCoordinate, ConsoleColor color)
         {
             this.XCoordinate = xCoordinate;
             this.YCoordinate = yCoordinate;
             this.Color = color;
         }
-
-
     }
 }

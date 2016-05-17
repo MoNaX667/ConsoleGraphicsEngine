@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace ConsoleGraphEngine
+﻿namespace ConsoleGraphEngine
 {
-    class Program
+    using System;
+    internal class Program
     {
-        static void Main()
+        public static void Main()
         {
             // Console customization
             Console.Title = "Graphic Console Processor";
@@ -15,7 +14,6 @@ namespace ConsoleGraphEngine
             Console.WindowWidth = 100;
 
             AppEngine.Run();
-            
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ConsoleGraphEngine
+﻿namespace ConsoleGraphEngine
 {
     abstract class Shape
     {
