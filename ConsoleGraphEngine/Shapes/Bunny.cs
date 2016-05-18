@@ -1,58 +1,51 @@
-﻿namespace ConsoleGraphEngine
-{
-    using System;
+﻿using System;
 
+namespace ConsoleGraphEngine
+{
     internal class Bunny : Shape
     {
         // Members
-        private Pixel myBody;
-        private static Random ran = new Random();
+        private static readonly Random ran = new Random();
         private static Bunny myBunny;
 
         // Properties
-        public Pixel MyBody
-        {
-            get
-            {
-                return this.myBody;
-            }
-        }
+        public Pixel MyBody { get; }
 
         // Constructors
         private Bunny(int xCoordinate, int yCoordinate, ConsoleColor color)
         {
-            this.myBody = new Pixel(xCoordinate, yCoordinate, color);
+            MyBody = new Pixel(xCoordinate, yCoordinate, color);
         }
 
         /// <summary>
-        /// Draw bunny
+        ///     Draw bunny
         /// </summary>
         public override void Draw()
         {
-            ConsoleColor tempColor = Console.ForegroundColor;
+            var tempColor = Console.ForegroundColor;
 
-            Console.SetCursorPosition(this.myBody.XCoordinate, this.myBody.YCoordinate);
-            Console.ForegroundColor = this.myBody.Color;
+            Console.SetCursorPosition(MyBody.XCoordinate, MyBody.YCoordinate);
+            Console.ForegroundColor = MyBody.Color;
             Console.Write('⬢');
 
             Console.ForegroundColor = tempColor;
         }
 
         /// <summary>
-        /// Revive bunny with new position
+        ///     Revive bunny with new position
         /// </summary>
         /// <returns></returns>
         public static Bunny GetBunny()
         {
             if (myBunny == null)
             {
-                myBunny = new Bunny(ran.Next(3, 80), ran.Next(3, 25), (ConsoleColor)ran.Next(2, 13));
+                myBunny = new Bunny(ran.Next(3, 80), ran.Next(3, 25), (ConsoleColor) ran.Next(2, 13));
             }
             else
             {
-                myBunny.myBody.XCoordinate = ran.Next(3, 78);
-                myBunny.myBody.YCoordinate = ran.Next(3, 25);
-                myBunny.myBody.Color = (ConsoleColor)ran.Next(2, 13);
+                myBunny.MyBody.XCoordinate = ran.Next(3, 78);
+                myBunny.MyBody.YCoordinate = ran.Next(3, 25);
+                myBunny.MyBody.Color = (ConsoleColor) ran.Next(2, 13);
             }
 
             return myBunny;

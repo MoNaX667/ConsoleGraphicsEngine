@@ -1,17 +1,17 @@
-﻿namespace ConsoleGraphEngine
-{
-    using System;
+﻿using System;
 
+namespace ConsoleGraphEngine
+{
     internal static class ConsoleDataBuilder
     {
         /////////////////////////// Public methods //////////////////////////////
-        
+
         /// <summary>
-        /// Clean graphic frame
+        ///     Clean graphic frame
         /// </summary>
         public static void ClearGrapfField()
         {
-            for (int i = 3; i < 29; i++)
+            for (var i = 3; i < 29; i++)
             {
                 Console.SetCursorPosition(3, i);
                 Console.Write(new string(' ', 78));
