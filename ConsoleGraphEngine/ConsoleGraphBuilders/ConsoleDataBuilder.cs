@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace ConsoleGraphEngine
+﻿namespace ConsoleGraphEngine
 {
+    using System;
+
     internal static class ConsoleDataBuilder
     {
         /////////////////////////// Public methods //////////////////////////////

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading;
-
-namespace ConsoleGraphEngine
+﻿namespace ConsoleGraphEngine
 {
+    using System;
+    using System.Threading;
+
     internal static class AppEngine
     {
         /// <summary>
@@ -39,6 +39,7 @@ namespace ConsoleGraphEngine
                     {
                         break;
                     }
+
                     Console.SetCursorPosition(3, 32);
                     Console.Write(new string(' ', 30));
                 }
@@ -116,7 +117,6 @@ namespace ConsoleGraphEngine
 
                 Thread.Sleep(50);
 
-
                 if (Console.KeyAvailable)
                 {
                     keyConsole = Console.ReadKey();
@@ -153,6 +153,7 @@ namespace ConsoleGraphEngine
                 y = yResult;
                 return;
             }
+
             if (mySnake.CheckMyBodyesForStep(xResult, yResult + 1) &&
                 CheckVector(mySnake, myBunny, xResult, yResult + 1))
             {
@@ -160,6 +161,7 @@ namespace ConsoleGraphEngine
                 y = yResult + 1;
                 return;
             }
+
             if (mySnake.CheckMyBodyesForStep(xResult - 1, yResult) &&
                 CheckVector(mySnake, myBunny, xResult - 1, yResult))
             {
@@ -167,6 +169,7 @@ namespace ConsoleGraphEngine
                 y = yResult;
                 return;
             }
+
             if (mySnake.CheckMyBodyesForStep(xResult, yResult - 1) &&
                 CheckVector(mySnake, myBunny, xResult, yResult - 1))
             {
@@ -180,13 +183,13 @@ namespace ConsoleGraphEngine
         }
 
         /// <summary>
-        ///     Check equils new coordinate ith old position for good relust
+        /// Check new coordinate with old position for good move
         /// </summary>
         /// <param name="mySnake">mySnake</param>
         /// <param name="myBunny">myBunny</param>
         /// <param name="xStep">new x coordinate</param>
         /// <param name="yStep">new y coordinate</param>
-        /// <returns></returns>
+        /// <returns>answer of the checking vector</returns>
         private static bool CheckVector(Snake mySnake, Bunny myBunny, int xStep, int yStep)
         {
             // Calculate old vector lenght
