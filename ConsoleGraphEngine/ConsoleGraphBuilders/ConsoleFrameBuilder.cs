@@ -1,16 +1,24 @@
-﻿using System;
+﻿// <copyright file="ConsoleFrameBuilder.cs" company="Some Company">
+// Copyright (c) Sprocket Enterprises. All rights reserved.
+// </copyright>
+// <author>Vitalit Belyakov</author>
 
 namespace ConsoleGraphEngine
-{ 
-    static class ConsoleFrameBuilder
+{
+    using System;
+
+    /// <summary>
+    /// Console frame builder
+    /// </summary>
+    internal static class ConsoleFrameBuilder
     {
         /// <summary>
         /// Draw simple frame
         /// </summary>
-        /// <param name="startHeight"></param>
-        /// <param name="startWidth"></param>
-        /// <param name="height"></param>
-        /// <param name="width"></param>
+        /// <param name="startHeight">start height</param>
+        /// <param name="startWidth">start width</param>
+        /// <param name="height">target height</param>
+        /// <param name="width">target width</param>
         public static void DrawBaseFrame(int startHeight, int startWidth, int height, int width)
         {
             // Top horizontal line
@@ -40,14 +48,15 @@ namespace ConsoleGraphEngine
             }
         }
 
+        /// <summary>
+        /// Draw animation frame
+        /// </summary>
         public static void DrawAnimationFrame()
         {
-            DrawBaseFrame(1,1,29,80);
+            DrawBaseFrame(1, 1, 29, 80);
 
-            Console.SetCursorPosition(30,1);
+            Console.SetCursorPosition(30, 1);
             Console.Write(" Animation block ");
         }
-
-
     }
 }

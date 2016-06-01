@@ -1,9 +1,20 @@
-﻿namespace ConsoleGraphEngine
+﻿// <copyright file="Program.cs" company="Some Company">
+// Copyright (c) Sprocket Enterprises. All rights reserved.
+// </copyright>
+// <author>Vitalit Belyakov</author>
+
+namespace ConsoleGraphEngine
 {
     using System;
 
+    /// <summary>
+    /// Program class
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// The main method
+        /// </summary>
         public static void Main()
         {
             // Console customization

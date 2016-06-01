@@ -1,15 +1,33 @@
-﻿namespace ConsoleGraphEngine
+﻿// <copyright file="Snake.cs" company="Some Company">
+// Copyright (c) Sprocket Enterprises. All rights reserved.
+// </copyright>
+// <author>Vitalit Belyakov</author>
+
+namespace ConsoleGraphEngine
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Snake for graphic engine
+    /// </summary>
     internal class Snake : Shape
     {
         // Members
+
+        /// <summary>
+        /// Body of the snake
+        /// </summary>
         private readonly List<Pixel> myBodyesPart;
 
         // Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Snake" /> class
+        /// </summary>
+        /// <param name="xStartPos">X start position</param>
+        /// <param name="yStartPos">Y start position</param>
         public Snake(int xStartPos, int yStartPos)
         {
             this.myBodyesPart = new List<Pixel>();
@@ -53,8 +71,8 @@
         /// <summary>
         /// Check this snake element for crashing
         /// </summary>
-        /// <param name="xStep"></param>
-        /// <param name="yStep"></param>
+        /// <param name="xStep">X step coordinate</param>
+        /// <param name="yStep">Y step coordinate</param>
         /// <returns>return true if all good, else return false</returns>
         public bool CheckMyBodyesForStep(int xStep, int yStep)
         {
@@ -100,9 +118,9 @@
         /// <summary>
         /// Add new element to snake body
         /// </summary>
-        /// <param name="xCoordinate">X</param>
-        /// <param name="yCoordinate">Y</param>
-        /// <param name="color">color</param>
+        /// <param name="xCoordinate">X coordinate</param>
+        /// <param name="yCoordinate">Y coordinate</param>
+        /// <param name="color">Color of pixel</param>
         public void Eat(int xCoordinate, int yCoordinate, ConsoleColor color)
         {
             this.myBodyesPart.Add(new Pixel(xCoordinate, yCoordinate, color));

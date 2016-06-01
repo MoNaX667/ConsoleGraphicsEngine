@@ -1,8 +1,16 @@
-﻿namespace ConsoleGraphEngine
+﻿// <copyright file="AppEngine.cs" company="Some Company">
+// Copyright (c) Sprocket Enterprises. All rights reserved.
+// </copyright>
+// <author>Vitalit Belyakov</author>
+
+namespace ConsoleGraphEngine
 {
     using System;
     using System.Threading;
 
+    /// <summary>
+    /// App Engine 
+    /// </summary>
     internal static class AppEngine
     {
         /// <summary>
@@ -47,11 +55,11 @@
         }
 
         /// <summary>
-        ///     CheckEat to next move
+        /// CheckEat to next move
         /// </summary>
-        /// <param name="mySnake"></param>
-        /// <param name="myBunny"></param>
-        /// <returns></returns>
+        /// <param name="mySnake">Current snake</param>
+        /// <param name="myBunny">Current bunny</param>
+        /// <returns>Return eat flag</returns>
         private static bool CheckEat(Snake mySnake, Bunny myBunny)
         {
             if ((mySnake.GetHead().XCoordinate == myBunny.MyBody.XCoordinate) &&
@@ -64,7 +72,7 @@
         }
 
         /// <summary>
-        ///     Build GIU and frame programm blocks
+        /// Build GIU and frame program blocks
         /// </summary>
         private static void DrawUserInterface()
         {
@@ -74,7 +82,7 @@
         }
 
         /// <summary>
-        ///     RunSnakeAnimation
+        /// Run snake animation
         /// </summary>
         private static void RunSnakeAnimation()
         {
@@ -130,8 +138,12 @@
         }
 
         /// <summary>
-        ///     Calculate new coordinate to next move for snake
+        /// Calculate new coordinate to next move for snake
         /// </summary>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
+        /// <param name="mySnake">Current snake</param>
+        /// <param name="myBunny">Current bunny</param>
         private static void CalculateNextSnakeMove(
             out int x,
             out int y,
@@ -185,10 +197,10 @@
         /// <summary>
         /// Check new coordinate with old position for good move
         /// </summary>
-        /// <param name="mySnake">mySnake</param>
-        /// <param name="myBunny">myBunny</param>
-        /// <param name="xStep">new x coordinate</param>
-        /// <param name="yStep">new y coordinate</param>
+        /// <param name="mySnake">Current snake</param>
+        /// <param name="myBunny">Current bunny</param>
+        /// <param name="xStep">New x coordinate</param>
+        /// <param name="yStep">New y coordinate</param>
         /// <returns>answer of the checking vector</returns>
         private static bool CheckVector(Snake mySnake, Bunny myBunny, int xStep, int yStep)
         {
