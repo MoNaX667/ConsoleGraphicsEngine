@@ -47,11 +47,15 @@
     <Compile Include="ConsoleGraphBuilders\ConsoleDataBuilder.cs" />
     <Compile Include="ConsoleGraphBuilders\ConsoleFrameBuilder.cs" />
     <Compile Include="Pixel.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Program.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapes\Bunny.cs" />
     <Compile Include="Shapes\Shape.cs" />
-    <Compile Include="Shapes\Snake.cs" />
+    <Compile Include="Shapes\Snake.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

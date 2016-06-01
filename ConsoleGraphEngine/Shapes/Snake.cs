@@ -1,39 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// <copyright file="Snake.cs" company="Some Company">
+// Copyright (c) Sprocket Enterprises. All rights reserved.
+// </copyright>
+// <author>Vitalit Belyakov</author>
 
 namespace ConsoleGraphEngine
 {
-    internal class Snake:Shape
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// Snake for graphic engine
+    /// </summary>
+    internal class Snake : Shape
     {
         // Members
-        private List<Pixel> myBodyesPart;
 
-        // Properties
-        
+        /// <summary>
+        /// Body of the snake
+        /// </summary>
+        private readonly List<Pixel> myBodyesPart;
+
         // Constructors
-        public Snake(int xStartPos,int yStartPos)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Snake" /> class
+        /// </summary>
+        /// <param name="xStartPos">X start position</param>
+        /// <param name="yStartPos">Y start position</param>
+        public Snake(int xStartPos, int yStartPos)
         {
-            myBodyesPart = new List<Pixel>();
+            this.myBodyesPart = new List<Pixel>();
+            var ran = new Random();
 
-            Random ran = new Random();
-
-            for (int i = 0; i < 3; i++) {
-                myBodyesPart.Add(new Pixel(xStartPos +i, yStartPos+i, 
+            for (var i = 0; i < 3; i++)
+            {
+                this.myBodyesPart.Add(new Pixel(
+                    xStartPos + i,
+                    yStartPos + i,
                     (ConsoleColor)ran.Next(2, 10)));
             }
         }
 
-        // Methods
-
         /// <summary>
-        /// Draw snake body to graphics frame
+        ///     Draw snake body to graphics frame
         /// </summary>
         public override void Draw()
         {
-            ConsoleColor tempColor = Console.ForegroundColor;
+            var tempColor = Console.ForegroundColor;
 
-            foreach (Pixel value in myBodyesPart) {
+            foreach (var value in this.myBodyesPart)
+            {
                 Console.SetCursorPosition(value.XCoordinate, value.YCoordinate);
                 Console.ForegroundColor = value.Color;
                 Console.Write('█');
@@ -42,25 +59,25 @@ namespace ConsoleGraphEngine
             Console.ForegroundColor = tempColor;
         }
 
-
         /// <summary>
         /// Return head pixel
         /// </summary>
-        /// <returns></returns>
-        public Pixel GetHead() {
-            return myBodyesPart[myBodyesPart.Count - 1];
+        /// <returns>head of the snake</returns>
+        public Pixel GetHead()
+        {
+            return this.myBodyesPart[this.myBodyesPart.Count - 1];
         }
 
         /// <summary>
-        /// Check bodyes element for crashing
+        /// Check this snake element for crashing
         /// </summary>
-        /// <param name="xStep"></param>
-        /// <param name="yStep"></param>
+        /// <param name="xStep">X step coordinate</param>
+        /// <param name="yStep">Y step coordinate</param>
         /// <returns>return true if all good, else return false</returns>
-        public bool CheckMyBodyesForStep(int xStep,int yStep)
+        public bool CheckMyBodyesForStep(int xStep, int yStep)
         {
-            return myBodyesPart.All(section => section.XCoordinate != xStep || 
-            section.YCoordinate != yStep);
+            return this.myBodyesPart.All(section => section.XCoordinate != xStep ||
+                                               section.YCoordinate != yStep);
         }
 
         /// <summary>
@@ -68,42 +85,45 @@ namespace ConsoleGraphEngine
         /// </summary>
         /// <param name="x">xCoordinate for snake head</param>
         /// <param name="y">yCoordinate for snake head</param>
-        public void Move(int x, int y) {
-            int tempX = 0, tempY = 0;
+        public void Move(int x, int y)
+        {
+            int tempX = 0,
+                tempY = 0;
 
             // Pass coordinate
-            for (int i = myBodyesPart.Count - 1; i >=0; i--) {
-
-                if (i == myBodyesPart.Count - 1)
+            for (var i = this.myBodyesPart.Count - 1; i >= 0; i--)
+            {
+                if (i == this.myBodyesPart.Count - 1)
                 {
                     // Head coordinate
-                    tempX = myBodyesPart[i].XCoordinate;
-                    tempY = myBodyesPart[i].YCoordinate;
-                    myBodyesPart[i].XCoordinate = x;
-                    myBodyesPart[i].YCoordinate = y;
+                    tempX = this.myBodyesPart[i].XCoordinate;
+                    tempY = this.myBodyesPart[i].YCoordinate;
+                    this.myBodyesPart[i].XCoordinate = x;
+                    this.myBodyesPart[i].YCoordinate = y;
                 }
-                else {
+                else
+                {
                     // Other body coordinate
-                    var temp = myBodyesPart[i].XCoordinate;
-                    myBodyesPart[i].XCoordinate = tempX;
+                    var temp = this.myBodyesPart[i].XCoordinate;
+                    this.myBodyesPart[i].XCoordinate = tempX;
                     tempX = temp;
 
-                    temp = myBodyesPart[i].YCoordinate;
-                    myBodyesPart[i].YCoordinate = tempY;
+                    temp = this.myBodyesPart[i].YCoordinate;
+                    this.myBodyesPart[i].YCoordinate = tempY;
                     tempY = temp;
                 }
-
             }
         }
 
         /// <summary>
         /// Add new element to snake body
         /// </summary>
-        /// <param name="xCoordinate"></param>
-        /// <param name="yCoordinate"></param>
-        /// <param name="color"></param>
-        public void Eat(int xCoordinate,int yCoordinate,ConsoleColor color) {
-            myBodyesPart.Add(new Pixel(xCoordinate,yCoordinate,color));
+        /// <param name="xCoordinate">X coordinate</param>
+        /// <param name="yCoordinate">Y coordinate</param>
+        /// <param name="color">Color of pixel</param>
+        public void Eat(int xCoordinate, int yCoordinate, ConsoleColor color)
+        {
+            this.myBodyesPart.Add(new Pixel(xCoordinate, yCoordinate, color));
         }
     }
 }
